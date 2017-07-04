@@ -2,10 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xinlian.baby.mapper.UserMapper">
 
-	<!-- 通用查询结果列 -->
-	<sql id="Base_Column_List">
-		id, name, age, phone, create_time AS createTime, create_pin AS createPin, yn
-	</sql>
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.xinlian.baby.entity.User">
+		<id column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="age" property="age" />
+		<result column="phone" property="phone" />
+		<result column="create_time" property="createTime" />
+		<result column="create_pin" property="createPin" />
+		<result column="yn" property="yn" />
+	</resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, name, age, phone, create_time AS createTime, create_pin AS createPin, yn
+    </sql>
 
 	<delete id="deleteAll">
 		DELETE FROM USER

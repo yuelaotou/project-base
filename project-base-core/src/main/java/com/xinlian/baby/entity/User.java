@@ -1,46 +1,50 @@
 package com.xinlian.baby.entity;
 
 import java.util.Date;
-
-import org.springframework.format.annotation.DateTimeFormat;
+import com.baomidou.mybatisplus.annotations.TableLogic;
+import com.baomidou.mybatisplus.enums.IdType;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
 
 /**
- * 用户表
+ * <p>
+ * 用户实体类
+ * </p>
+ *
+ * @author yangguang
+ * @since 2017-07-04
  */
 public class User {
 
-	/**
-	 * 主键ID
-	 */
+	@TableId(value = "id", type = IdType.AUTO)
 	private Long id;
 	/**
-	 * 名称
+	 * 用户名
 	 */
 	private String name;
-
 	/**
 	 * 年龄
 	 */
-	private int age;
-
+	private Integer age;
 	/**
 	 * 电话号码
 	 */
 	private String phone;
-
 	/**
-	 * 创建时间
+	 * 创建日期
 	 */
+	@TableField("create_time")
 	private Date createTime;
-
 	/**
 	 * 创建人
 	 */
+	@TableField("create_pin")
 	private String createPin;
 	/**
 	 * 删除标识
 	 */
-	private int yn;
+	@TableLogic
+	private Integer yn;
 
 	public Long getId() {
 		return id;
@@ -58,11 +62,11 @@ public class User {
 		this.name = name;
 	}
 
-	public int getAge() {
+	public Integer getAge() {
 		return age;
 	}
 
-	public void setAge(int age) {
+	public void setAge(Integer age) {
 		this.age = age;
 	}
 
@@ -90,11 +94,11 @@ public class User {
 		this.createPin = createPin;
 	}
 
-	public int getYn() {
+	public Integer getYn() {
 		return yn;
 	}
 
-	public void setYn(int yn) {
+	public void setYn(Integer yn) {
 		this.yn = yn;
 	}
 
@@ -102,23 +106,17 @@ public class User {
 		super();
 	}
 
-	public User(String name, int age, String phone) {
-		super();
-		this.name = name;
-		this.age = age;
-		this.phone = phone;
-	}
-
-	public User(String name, Integer age, String phone, Date createTime, String createPin) {
+	public User(String name, Integer age, String phone, Date createTime, String createPin, Integer yn) {
 		super();
 		this.name = name;
 		this.age = age;
 		this.phone = phone;
 		this.createTime = createTime;
 		this.createPin = createPin;
+		this.yn = yn;
 	}
 
-	public User(Long id, String name, Integer age, String phone, Date createTime, String createPin, int yn) {
+	public User(Long id, String name, Integer age, String phone, Date createTime, String createPin, Integer yn) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -131,8 +129,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", age=" + age + ", phone=" + phone + ", createTime=" + createTime
-				+ ", createPin=" + createPin + ", yn=" + yn + "]";
+		return "User{" + "id=" + id + ", name=" + name + ", age=" + age + ", phone=" + phone + ", createTime="
+				+ createTime + ", createPin=" + createPin + ", yn=" + yn + "}";
 	}
-
 }

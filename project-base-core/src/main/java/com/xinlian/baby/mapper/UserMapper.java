@@ -6,12 +6,18 @@ import java.util.List;
 //import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 
+import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.xinlian.baby.entity.User;
 
 /**
- * User 表数据库控制层接口
+ * <p>
+ * Mapper 接口
+ * </p>
+ *
+ * @author yangguang
+ * @since 2017-07-04
  */
-public interface UserMapper {
+public interface UserMapper extends BaseMapper<User> {
 
 	/**
 	 * 自定义注入方法
@@ -19,8 +25,6 @@ public interface UserMapper {
 	int deleteAll();
 
 	@Select("select id, name, age, phone, create_time AS createTime, create_pin AS createPin, yn from user")
-//	@Results({ @Result(property = "createTime", column = "create_time"),
-//			@Result(property = "createPin", column = "create_pin") })
 	List<User> selectListBySQL();
 
 }

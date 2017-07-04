@@ -6,13 +6,17 @@ package com.xinlian.baby.web.controller;
 import java.util.Date;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
 import com.xinlian.baby.common.utils.JsonUtil;
 import com.xinlian.baby.entity.User;
-import com.xinlian.baby.service.UserService;
+import com.xinlian.baby.service.IUserService;
 
 /**
  * @author yangguang
@@ -21,9 +25,30 @@ import com.xinlian.baby.service.UserService;
 @RestController
 @RequestMapping("/user")
 public class UserController {
-
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	@Autowired
-	UserService userService;
+	IUserService userService;
+
+	/**
+	 * 新增15条数据测试
+	 */
+	@RequestMapping("/insert")
+	public void insertUser() {
+		User user = new User();
+		user.setName("zhangsan");
+		user.setAge(17);
+		user.setPhone("13998885993");
+		user.setCreateTime(new Date());
+		user.setCreatePin("admin");
+		user.setYn(1);
+		logger.debug("====================");
+		logger.info("====================");
+		logger.warn("====================");
+		logger.error("====================");
+		for (int i = 0; i < 15; i++) {
+			userService.insert(user);
+		}
+	}
 
 	/**
 	 * 全部删除测试
@@ -31,6 +56,16 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping("/delete")
+	public int delete() {
+		return userService.deleteById(1L) ? 1 : 0;
+	}
+
+	/**
+	 * 全部删除测试
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/deleteAll")
 	public int deleteAll() {
 		return userService.deleteAll();
 	}
@@ -44,38 +79,38 @@ public class UserController {
 	public List<User> selectListBySQL() {
 		return userService.selectListBySQL();
 	}
-//
-//	/**
-//	 * 分页查询测试，没有入参，只返回前10个信息
-//	 * 
-//	 * @return
-//	 */
-//	@RequestMapping("/selectPage")
-//	public Page<User> selectPage() {
-//		return userService.selectPage(new Page<User>(0, 10));
-//	}
-//
-//	/**
-//	 * CURD各种测试
-//	 */
-//	@RequestMapping("/curd")
-//	public User curdTest() {
-//		// 新增一条记录
-//		userService.insertOrUpdate(new User(1L, "yangguang", 35, "13998885993", new Date(), "yangg", 1));
-//		// 修改一条记录
-//		userService.updateById(new User(1L, "yangguang", 35, "13998885993", new Date(), "yangg", 0));
-//		// 删除一条记录
-//		userService.deleteById(1L);
-//		// 删除所有记录
-//		userService.deleteAll();
-//		// 新增15条数据
-//		for (int i = 0; i < 15; ++i) {
-//			userService.insert(new User("zhangsan", 17 + i, "13888888888"));
-//		}
-//		// 分页查询10条记录
-//		Page<User> userListPage = userService.selectPage(new Page<User>(0, 10), new EntityWrapper<>(new User()));
-//		System.out.println(JsonUtil.toJson(userListPage));
-//		return userService.selectById(1L);
-//	}
+
+	/**
+	 * 分页查询测试，没有入参，只返回前10个信息
+	 *
+	 * @return
+	 */
+	@RequestMapping("/selectPage")
+	public Page<User> selectPage() {
+		// 分页查询10条记录
+		Page<User> userListPage = userService.selectPage(new Page<User>(1, 10), new EntityWrapper<>(new User()));
+		System.out.println(JsonUtil.toJson(userListPage));
+		Page<User> userListPage1 = userService.selectPage(new Page<User>(2, 10), new EntityWrapper<>(new User()));
+		System.out.println(JsonUtil.toJson(userListPage1));
+		return userListPage;
+	}
+
+	/**
+	 * 修改测试
+	 */
+	@RequestMapping("/update")
+	public void updateById() {
+		// 修改一条记录
+		userService.updateById(new User(1L, "yangguang", 35, "13998885993", new Date(), "yangg", 1));
+
+	}
+
+	/**
+	 * 异常测试，关注事务
+	 */
+	@RequestMapping("/exception")
+	public void testException() {
+		userService.testException();
+	}
 
 }
