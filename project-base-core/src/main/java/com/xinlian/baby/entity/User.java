@@ -2,41 +2,12 @@ package com.xinlian.baby.entity;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 /**
  * 用户表
  */
 public class User {
-
-	public User() {
-		super();
-	}
-
-	public User(String name, int age, String phone) {
-		super();
-		this.name = name;
-		this.age = age;
-		this.phone = phone;
-	}
-
-	public User(String name, Integer age, String phone, Date createTime, String createPin) {
-		super();
-		this.name = name;
-		this.age = age;
-		this.phone = phone;
-		this.createTime = createTime;
-		this.createPin = createPin;
-	}
-
-	public User(Long id, String name, Integer age, String phone, Date createTime, String createPin, int yn) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.age = age;
-		this.phone = phone;
-		this.createTime = createTime;
-		this.createPin = createPin;
-		this.yn = yn;
-	}
 
 	/**
 	 * 主键ID
@@ -124,6 +95,37 @@ public class User {
 	}
 
 	public void setYn(int yn) {
+		this.yn = yn;
+	}
+
+	public User() {
+		super();
+	}
+
+	public User(String name, int age, String phone) {
+		super();
+		this.name = name;
+		this.age = age;
+		this.phone = phone;
+	}
+
+	public User(String name, Integer age, String phone, Date createTime, String createPin) {
+		super();
+		this.name = name;
+		this.age = age;
+		this.phone = phone;
+		this.createTime = createTime;
+		this.createPin = createPin;
+	}
+
+	public User(Long id, String name, Integer age, String phone, Date createTime, String createPin, int yn) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.age = age;
+		this.phone = phone;
+		this.createTime = createTime;
+		this.createPin = createPin;
 		this.yn = yn;
 	}
 
