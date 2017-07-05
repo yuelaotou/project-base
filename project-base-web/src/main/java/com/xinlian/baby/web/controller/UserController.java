@@ -100,8 +100,7 @@ public class UserController {
 		// 分页查询10条记录
 		Page<User> userListPage = userService.selectPage(new Page<User>(1, 10), new EntityWrapper<>(new User()));
 		System.out.println(JsonUtil.toJson(userListPage));
-		Page<User> userListPage1 = userService.selectPage(new Page<User>(2, 10), new EntityWrapper<>(new User()));
-		System.out.println(JsonUtil.toJson(userListPage1));
+		userListPage.setTotal(15);
 		return userListPage;
 	}
 

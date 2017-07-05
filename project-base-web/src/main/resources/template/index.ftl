@@ -52,4 +52,4 @@
     </div>
   </div>
 </#assign>
-<#include "layout/layout.ftl" />
+<#include "layout/main.ftl" />
