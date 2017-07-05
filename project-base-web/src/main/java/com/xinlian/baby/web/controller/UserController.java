@@ -9,7 +9,10 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
@@ -22,13 +25,18 @@ import com.xinlian.baby.service.IUserService;
  * @author yangguang
  *
  */
-@RestController
+@Controller
 @RequestMapping("/user")
 public class UserController {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	@Autowired
 	IUserService userService;
 
+	@RequestMapping("")
+	public String a(Model mv) {
+		mv.addAttribute("aaa","===asdasd===");
+		return "user/user";
+	}
 	/**
 	 * 新增15条数据测试
 	 */
@@ -76,6 +84,7 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping("/getAll")
+	@ResponseBody
 	public List<User> selectListBySQL() {
 		return userService.selectListBySQL();
 	}
@@ -86,6 +95,7 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping("/selectPage")
+	@ResponseBody
 	public Page<User> selectPage() {
 		// 分页查询10条记录
 		Page<User> userListPage = userService.selectPage(new Page<User>(1, 10), new EntityWrapper<>(new User()));
