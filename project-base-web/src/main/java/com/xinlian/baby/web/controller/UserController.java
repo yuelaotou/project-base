@@ -11,7 +11,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,7 +37,7 @@ public class UserController {
 
 	@RequestMapping("")
 	public String a(Model mv) {
-		mv.addAttribute("aaa","===asdasd===");
+		mv.addAttribute("aaa",new Date());
 		return "user/user";
 	}
 	/**
@@ -96,12 +99,15 @@ public class UserController {
 	 */
 	@RequestMapping("/selectPage")
 	@ResponseBody
-	public Page<User> selectPage() {
+	public Page<User> selectPage(User user, int limit, int offset, int current) {
+		System.out.println(user);
+		System.out.println(limit);
+		System.out.println(offset);
+		System.out.println(current);
 		// 分页查询10条记录
-		Page<User> userListPage = userService.selectPage(new Page<User>(1, 10), new EntityWrapper<>(new User()));
+		Page<User> userListPage = userService.selectPage(new Page<User>(current, limit), new EntityWrapper<>(new User()));
 		System.out.println(JsonUtil.toJson(userListPage));
-		Page<User> userListPage1 = userService.selectPage(new Page<User>(2, 10), new EntityWrapper<>(new User()));
-		System.out.println(JsonUtil.toJson(userListPage1));
+		userListPage.setTotal(15);
 		return userListPage;
 	}
 
