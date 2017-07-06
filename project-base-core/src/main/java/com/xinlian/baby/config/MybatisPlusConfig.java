@@ -3,16 +3,13 @@
  */
 package com.xinlian.baby.config;
 
-import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.baomidou.mybatisplus.entity.GlobalConfiguration;
-import com.baomidou.mybatisplus.enums.DBType;
 import com.baomidou.mybatisplus.enums.IdType;
 import com.baomidou.mybatisplus.mapper.LogicSqlInjector;
 import com.baomidou.mybatisplus.plugins.PaginationInterceptor;
-import com.baomidou.mybatisplus.spring.MybatisSqlSessionFactoryBean;
 
 /**
  * @author yangguang
@@ -27,9 +24,7 @@ public class MybatisPlusConfig {
 	 */
 	@Bean
 	public PaginationInterceptor paginationInterceptor() {
-		PaginationInterceptor page = new PaginationInterceptor();
-		page.setDialectType(DBType.MYSQL.getDb());
-		return page;
+		return new PaginationInterceptor();
 	}
 
 	/**

@@ -290,6 +290,7 @@
         columns: [[]],
         data: [],
         totalField: 'total',
+        //edit by yangguang
         dataField: 'records',
         method: 'get',
         url: undefined,
@@ -1992,6 +1993,7 @@
                     0 : this.options.pageSize * (this.options.pageNumber - 1);
                 params.limit = this.options.pageSize === this.options.formatAllRows() ?
                     this.options.totalRows : this.options.pageSize;
+                //edit by yangguang
                 params.current = this.options.pageNumber;
             }
         }

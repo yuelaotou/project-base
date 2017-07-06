@@ -11,12 +11,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
@@ -67,8 +63,8 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping("/delete")
-	public int delete() {
-		return userService.deleteById(1L) ? 1 : 0;
+	public void delete() {
+		userService.deleteById(1L);
 	}
 
 	/**
@@ -100,14 +96,9 @@ public class UserController {
 	@RequestMapping("/selectPage")
 	@ResponseBody
 	public Page<User> selectPage(User user, int limit, int offset, int current) {
-		System.out.println(user);
-		System.out.println(limit);
-		System.out.println(offset);
-		System.out.println(current);
 		// 分页查询10条记录
 		Page<User> userListPage = userService.selectPage(new Page<User>(current, limit), new EntityWrapper<>(new User()));
 		System.out.println(JsonUtil.toJson(userListPage));
-		userListPage.setTotal(15);
 		return userListPage;
 	}
 
