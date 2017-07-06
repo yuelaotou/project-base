@@ -1,15 +1,18 @@
 package com.xinlian.baby.service.impl;
 
-import java.util.Date;
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.xinlian.baby.common.utils.JsonUtil;
 import com.xinlian.baby.entity.User;
 import com.xinlian.baby.mapper.UserMapper;
 import com.xinlian.baby.service.IUserService;
+import com.xinlian.baby.vo.UserVO;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Date;
+import java.util.List;
 
 /**
  * <p>
@@ -37,6 +40,20 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 	public void testException() {
 		baseMapper.deleteAll();
 		baseMapper.insert(new User("yangguasdasdadasdasdaddsadang", 35, "13998885993", new Date(), "yangg", 1));
+	}
+
+	public Page<User> selectPage(UserVO userVO) {
+		EntityWrapper entityWrapper=new EntityWrapper(new User());
+		entityWrapper.where(null != userVO.getId(), "id = {0}",userVO.getId())
+				.andNew(null != userVO.getName(),"name = {0}",userVO.getName())
+				.andNew(null != userVO.getAge(),"age = {0}",userVO.getAge())
+				.andNew(null != userVO.getPhone(),"phone = {0}",userVO.getPhone())
+				.andNew(null != userVO.getCreateTimeStart(),"create_time >= {0}", userVO.getCreateTimeStart())
+				.andNew(null != userVO.getCreateTimeEnd(),"create_time <= {0}", userVO.getCreateTimeEnd());
+		//.orderBy("age");
+		Page<User> userListPage = this.selectPage(new Page<User>(userVO.getPageNumber(), userVO.getPageSize()), entityWrapper);
+		System.out.println(JsonUtil.toJson(userListPage));
+		return userListPage;
 	}
 
 }

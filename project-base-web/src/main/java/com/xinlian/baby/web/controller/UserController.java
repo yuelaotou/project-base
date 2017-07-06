@@ -1,18 +1,23 @@
 /**
- * 
+ *
  */
 package com.xinlian.baby.web.controller;
 
 import java.util.Date;
 import java.util.List;
 
+import com.xinlian.baby.vo.UserVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
@@ -59,17 +64,17 @@ public class UserController {
 
 	/**
 	 * 全部删除测试
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping("/delete")
-	public void delete() {
-		userService.deleteById(1L);
+	public int delete() {
+		return userService.deleteById(1L) ? 1 : 0;
 	}
 
 	/**
 	 * 全部删除测试
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping("/deleteAll")
@@ -79,7 +84,7 @@ public class UserController {
 
 	/**
 	 * 查询所有测试
-	 * 
+	 *
 	 * @return
 	 */
 	@RequestMapping("/getAll")
@@ -88,6 +93,26 @@ public class UserController {
 		return userService.selectListBySQL();
 	}
 
+//	/**
+//	 * 分页查询测试，没有入参，只返回前10个信息
+//	 *
+//	 * @return
+//	 */
+//	@RequestMapping("/selectPage")
+//	@ResponseBody
+//	public Page<User> selectPage(UserVO userVO, int limit, int offset, int current) {
+//		System.out.println(userVO);
+//		System.out.println(limit);
+//		System.out.println(offset);
+//		System.out.println(current);
+//		// 分页查询10条记录
+//		Page<User> userListPage = userService.selectPage(new Page<User>(current, limit), new EntityWrapper<>(new User()));
+//		System.out.println(JsonUtil.toJson(userListPage));
+//		userListPage.setTotal(15);
+//		return userListPage;
+//	}
+
+
 	/**
 	 * 分页查询测试，没有入参，只返回前10个信息
 	 *
@@ -95,12 +120,14 @@ public class UserController {
 	 */
 	@RequestMapping("/selectPage")
 	@ResponseBody
-	public Page<User> selectPage(User user, int limit, int offset, int current) {
+	public Page<User> selectPage(UserVO userVO) {
+		System.out.println(userVO);
 		// 分页查询10条记录
-		Page<User> userListPage = userService.selectPage(new Page<User>(current, limit), new EntityWrapper<>(new User()));
+		Page<User> userListPage = userService.selectPage(userVO);
 		System.out.println(JsonUtil.toJson(userListPage));
 		return userListPage;
 	}
+
 
 	/**
 	 * 修改测试
