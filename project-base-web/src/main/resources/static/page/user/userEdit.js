@@ -2,14 +2,15 @@
  * Created by dmin on 2017/7/7.
  */
 $(function() {
-   $("#saveBtn").click(function() {
+   $("#updateBtn").click(function() {
        var paramObj = {
-           name: $("#userAddName").val(),
-           age: $("#userAddAge").val(),
-           phone: $("#userAddPhone").val()
+           id: $("#userEditId").val(),
+           name: $("#userEditName").val(),
+           age: $("#userEditAge").val(),
+           phone: $("#userEditPhone").val()
        };
        $.ajax({
-           url:"/user/addUser",    //请求的url地址
+           url:"/user/updateUser",    //请求的url地址
            dataType:"json",   //返回格式为json
            async:true,//请求是否异步，默认为异步，这也是ajax重要特性
            data:paramObj,    //参数值
@@ -18,21 +19,21 @@ $(function() {
                //请求成功时处理
                if (result && true == result.success) {
                    //关闭对话框
-                   $('#addUserModal').modal('hide');
-                   //alert("新增用户成功！");
+                   $('#editUserModal').modal('hide');
+                   //alert("编辑用户成功！");
                    new PNotify({
                        title: '成功提示',
-                       text: '新增用户成功!',
+                       text: '编辑用户成功！',
                        type: 'success',
                        styling: 'bootstrap3'
                    });
                    //刷新查询列表
                    $('#userTable').bootstrapTable('refresh');
                } else {
-                   //alert("新增用户失败：" + result.message);
+                   //alert("编辑用户失败：" + result.message);
                    new PNotify({
                        title: '失败提示',
-                       text: '新增用户失败：' + result.message,
+                       text: '编辑用户失败：' + result.message,
                        type: 'error',
                        styling: 'bootstrap3'
                    });

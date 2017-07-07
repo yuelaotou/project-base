@@ -1842,27 +1842,27 @@ if (typeof NProgress != 'undefined') {
 			if( typeof (PNotify) === 'undefined'){ return; }
 			console.log('init_PNotify');
 			
-			new PNotify({
-			  title: "PNotify",
-			  type: "info",
-			  text: "Welcome. Try hovering over me. You can click things behind me, because I'm non-blocking.",
-			  nonblock: {
-				  nonblock: true
-			  },
-			  addclass: 'dark',
-			  styling: 'bootstrap3',
-			  hide: false,
-			  before_close: function(PNotify) {
-				PNotify.update({
-				  title: PNotify.options.title + " - Enjoy your Stay",
-				  before_close: null
-				});
-
-				PNotify.queueRemove();
-
-				return false;
-			  }
-			});
+			// new PNotify({
+			//   title: "PNotify",
+			//   type: "info",
+			//   text: "Welcome. Try hovering over me. You can click things behind me, because I'm non-blocking.",
+			//   nonblock: {
+			// 	  nonblock: true
+			//   },
+			//   addclass: 'dark',
+			//   styling: 'bootstrap3',
+			//   hide: false,
+			//   before_close: function(PNotify) {
+			// 	PNotify.update({
+			// 	  title: PNotify.options.title + " - Enjoy your Stay",
+			// 	  before_close: null
+			// 	});
+            //
+			// 	PNotify.queueRemove();
+            //
+			// 	return false;
+			//   }
+			// });
 
 		}; 
 	   
@@ -5083,3 +5083,38 @@ if (typeof NProgress != 'undefined') {
         var second = datetime.getSeconds() < 10 ? "0" + datetime.getSeconds() : datetime.getSeconds();
         return year + "-" + month + "-" + date + "- " + hour + ":" + minute + ":" + second;
     }
+
+	/**
+	 * 弹出确认对话框(提示内容为confirmText)，当点击->确定 时调用confirmFunction函数
+	 * @param confirmText 提示内容
+	 * @param confirmFunction 点击确认后执行该函数
+	 */
+	function confirmModal(confirmText,confirmFunction){
+		var modalHtml = '<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">'
+            + '<div class="modal-dialog modal-sm">'
+            + '<div class="modal-content">'
+			//header
+          	+ '<div class="modal-header">'
+            + '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>'
+            + '<h4 class="modal-title">确认提示</h4>'
+            + '</div>'
+			//body
+            + '<div class="modal-body">'
+            + '<p>' + confirmText + '</p>'
+            + '</div>'
+			//footer
+            + '<div class="modal-footer">'
+            + '<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>'
+            + '<button type="button" class="btn btn-primary" id="confirmBtn">确认</button>'
+            + '</div></div></div></div>';
+		var modalObj = $(modalHtml);
+        //点击确认按钮操作
+        modalObj.find("#confirmBtn").click(function() {
+            //隐藏确认框
+            modalObj.modal('hide');
+            //调用确认回调函数
+            confirmFunction();
+        });
+        //显示确认框
+        modalObj.modal('show');
+	}

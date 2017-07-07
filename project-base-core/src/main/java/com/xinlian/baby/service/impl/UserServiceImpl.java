@@ -44,7 +44,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
 	public Page<User> selectPage(UserVO userVO) {
 		EntityWrapper entityWrapper=new EntityWrapper(new User());
-		entityWrapper.where(null != userVO.getId(), "id = {0}",userVO.getId())
+		entityWrapper.where("yn = {0}",1)
+				.andNew(null != userVO.getId(), "id = {0}",userVO.getId())
 				.andNew(null != userVO.getName(),"name = {0}",userVO.getName())
 				.andNew(null != userVO.getAge(),"age = {0}",userVO.getAge())
 				.andNew(null != userVO.getPhone(),"phone = {0}",userVO.getPhone())

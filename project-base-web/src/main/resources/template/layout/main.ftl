@@ -20,6 +20,11 @@
     <!-- Bootstrap datetime picker -->
     <link href="vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
 
+    <!-- PNotify -->
+    <link href="vendors/pnotify/dist/pnotify.css" rel="stylesheet">
+    <link href="vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
+    <link href="vendors/pnotify/dist/pnotify.nonblock.css" rel="stylesheet">
+
     <!-- Custom Theme Style -->
     <link href="build/css/custom.css" rel="stylesheet">
 ${(customCss)?default("")}
@@ -59,6 +64,11 @@ ${(customCss)?default("")}
 <!--Bootstrap datetime picker-->
 <script src="vendors/moment/min/moment-with-locales.min.js"></script>
 <script src="vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+
+<!-- PNotify -->
+<script src="../vendors/pnotify/dist/pnotify.js"></script>
+<script src="../vendors/pnotify/dist/pnotify.buttons.js"></script>
+<script src="../vendors/pnotify/dist/pnotify.nonblock.js"></script>
 
 
 <!-- Custom Theme Scripts -->

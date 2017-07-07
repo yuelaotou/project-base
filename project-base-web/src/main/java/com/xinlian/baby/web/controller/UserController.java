@@ -3,27 +3,22 @@
  */
 package com.xinlian.baby.web.controller;
 
-import java.util.Date;
-import java.util.List;
-
+import com.baomidou.mybatisplus.plugins.Page;
+import com.xinlian.baby.common.utils.JsonUtil;
+import com.xinlian.baby.entity.User;
+import com.xinlian.baby.service.IUserService;
+import com.xinlian.baby.vo.Result;
 import com.xinlian.baby.vo.UserVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.plugins.Page;
-import com.xinlian.baby.common.utils.JsonUtil;
-import com.xinlian.baby.entity.User;
-import com.xinlian.baby.service.IUserService;
+import java.util.Date;
+import java.util.List;
 
 /**
  * @author yangguang
@@ -42,10 +37,88 @@ public class UserController {
 		return "user/user";
 	}
 
+
+	/**
+	 * 分页查询（userVO中含有查询条件）
+	 *
+	 * @return
+	 */
+	@RequestMapping("/selectPage")
+	@ResponseBody
+	public Page<User> selectPage(UserVO userVO) {
+		System.out.println(userVO);
+		// 分页查询
+		Page<User> userListPage = userService.selectPage(userVO);
+		logger.debug(JsonUtil.toJson(userListPage));
+		return userListPage;
+	}
+
+
+
 	@RequestMapping("/toUserAddPage")
 	public String toUserAddPage(Model modal) {
 		//modal.addAttribute("aaa",new Date());
 		return "user/userAdd";
+	}
+
+	@RequestMapping("/addUser")
+	@ResponseBody
+	public Result addUser(Model modal, User user) {
+		Result result = new Result();
+		try {
+			user.setCreateTime(new Date());
+			user.setYn(1);
+			user.setCreatePin("test");
+			boolean success = userService.insert(user);
+			result.setSuccess(success);
+		} catch (Exception e) {
+			logger.error("addUser error:" + e.getMessage());
+			result.setSuccess(false);
+			result.setMessage(e.getMessage());
+		}
+		return result;
+	}
+
+
+
+	@RequestMapping("/toUserEditPage")
+	public String toUserEditPage(Model modal, Long id) {
+		User user = userService.selectById(id);
+		modal.addAttribute("user",user);
+		return "user/userEdit";
+	}
+
+	@RequestMapping("/updateUser")
+	@ResponseBody
+	public Result updateUser(Model modal, User user) {
+		Result result = new Result();
+		try {
+			boolean success = userService.updateById(user);
+			result.setSuccess(success);
+		} catch (Exception e) {
+			logger.error("updateUser error:" + e.getMessage());
+			result.setSuccess(false);
+			result.setMessage(e.getMessage());
+		}
+		return result;
+	}
+
+	@RequestMapping("/deleteUser")
+	@ResponseBody
+	public Result deleteUser(Model modal, Long id) {
+		Result result = new Result();
+		try {
+			User user = new User();
+			user.setYn(0);
+			user.setId(id);
+			boolean success = userService.updateById(user);
+			result.setSuccess(success);
+		} catch (Exception e) {
+			logger.error("deleteUser error:" + e.getMessage());
+			result.setSuccess(false);
+			result.setMessage(e.getMessage());
+		}
+		return result;
 	}
 
 
@@ -120,21 +193,6 @@ public class UserController {
 //		return userListPage;
 //	}
 
-
-	/**
-	 * 分页查询测试，没有入参，只返回前10个信息
-	 *
-	 * @return
-	 */
-	@RequestMapping("/selectPage")
-	@ResponseBody
-	public Page<User> selectPage(UserVO userVO) {
-		System.out.println(userVO);
-		// 分页查询10条记录
-		Page<User> userListPage = userService.selectPage(userVO);
-		System.out.println(JsonUtil.toJson(userListPage));
-		return userListPage;
-	}
 
 
 	/**

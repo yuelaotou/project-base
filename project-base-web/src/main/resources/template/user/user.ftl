@@ -40,7 +40,7 @@
                                 <div class="item form-group col-md-3">
                                     <label class="control-label col-md-4 col-sm-4 col-xs-12" for="id">用户ID： </label>
                                     <div class="col-md-8 col-sm-8 col-xs-12">
-                                        <input type="text" id="id" name="id" class="form-control col-md-7 col-xs-12" required="required">
+                                        <input type="text" id="id" name="id" class="form-control col-md-7 col-xs-12">
                                     </div>
                                 </div>
                                 <div class="item form-group col-md-3">
@@ -110,7 +110,7 @@
 
 
                     <div class="row">
-                        <table id="table"></table>
+                        <table id="userTable"></table>
                     </div>
                     <#--<div class="row">-->
                         <#--<form class="form-horizontal form-label-left" novalidate>-->
@@ -140,6 +140,13 @@
                             </div>
                         </div>
                     </div>
+
+                <div id="editUserModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                        </div>
+                    </div>
+                </div>
                     <!-- /modals -->
             </div>
         </div>
