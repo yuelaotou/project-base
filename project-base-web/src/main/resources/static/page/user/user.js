@@ -71,3 +71,11 @@ function onSearchBtnClick(){
     //刷新表格并且重置当前页为第1页
     $('#table').bootstrapTable('refreshOptions',{pageNumber:1, pageSize:10});
 }
+
+/**
+ * 关闭【新增modal】时清空 modal缓存（否则不走url链接页面）
+ * 解决：modal.href仅第一次请求url链接，以后不再请求（使用本地缓存，输入框上仍有上次输入内容）->每次都请求url链接页面
+ */
+$("#addUserModal").on("hidden.bs.modal", function() {
+    $(this).removeData("bs.modal");
+});

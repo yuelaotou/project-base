@@ -37,26 +37,26 @@
                         <legend>查询条件</legend>
                         <form id="search-form" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="">
                             <div class="row">
-                                <div class="form-group col-md-3">
+                                <div class="item form-group col-md-3">
                                     <label class="control-label col-md-4 col-sm-4 col-xs-12" for="id">用户ID： </label>
                                     <div class="col-md-8 col-sm-8 col-xs-12">
                                         <input type="text" id="id" name="id" class="form-control col-md-7 col-xs-12" required="required">
                                     </div>
                                 </div>
-                                <div class="form-group col-md-3">
+                                <div class="item form-group col-md-3">
                                     <label class="control-label col-md-4 col-sm-4 col-xs-12" for="name">姓名： </label>
                                     <div class="col-md-8 col-sm-8 col-xs-12">
                                         <input type="text" id="name" name="name" class="form-control col-md-7 col-xs-12">
                                     </div>
                                 </div>
-                                <div class="form-group col-md-3">
+                                <div class="item form-group col-md-3">
                                     <label for="age" class="control-label col-md-4 col-sm-4 col-xs-12">年龄：</label>
                                     <div class="col-md-8 col-sm-8 col-xs-12">
                                         <input id="age" name="age" class="form-control col-md-7 col-xs-12" type="text">
                                     </div>
                                 </div>
 
-                                <div class="form-group col-md-3">
+                                <div class="item form-group col-md-3">
                                     <label class="control-label col-md-4 col-sm-4 col-xs-12" for="name">电话： </label>
                                     <div class="col-md-8 col-sm-8 col-xs-12">
                                         <input type="text" id="phone" name="phone" class="form-control col-md-7 col-xs-12">
@@ -79,7 +79,7 @@
                             <#--</div>-->
                             <#--</div>-->
                             <#--</div>-->
-                                <div class="form-group col-md-3">
+                                <div class="item form-group col-md-3">
                                     <label class="control-label col-md-4 col-sm-4 col-xs-12">出生日期： </label>
                                     <div class="col-md-8 col-sm-8 col-xs-12">
                                         <input type="text" id="createTimeStart" style="padding-left:50px;" name="createTimeStart" class="form-control col-md-7 col-xs-12">
@@ -87,25 +87,19 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group col-md-3">
+                                <div class="item form-group col-md-3">
                                     <label class="control-label col-md-4 col-sm-4 col-xs-12">至 </label>
                                     <div class="col-md-8 col-sm-8 col-xs-12">
                                         <input type="text" id="createTimeEnd" name="createTimeEnd" style="padding-left:50px;" class="form-control col-md-7 col-xs-12">
                                         <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                                     </div>
-                                <#--<div class='input-group form_datetime date col-md-8 col-sm-8 col-xs-12' id='createTimeEnd'>-->
-                                <#--<input type='text' class="form-control"/>-->
-                                <#--<span class="input-group-addon">-->
-                                <#--<span class="glyphicon glyphicon-calendar"></span>-->
-                                <#--</span>-->
-                                <#--</div>-->
                                 </div>
 
 
                                 <div class="form-group col-md-6">
                                     <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                                         <button class="btn btn-primary" type="button" onclick="onSearchBtnClick()">查&nbsp;询</button>
-                                        <button type="submit" class="btn btn-success">新&nbsp;增</button>
+                                        <button type="button" class="btn btn-success" data-toggle="modal" href="/user/toUserAddPage" data-target="#addUserModal">新&nbsp;增</button>
                                     </div>
                                 </div>
                             </div>
@@ -118,7 +112,38 @@
                     <div class="row">
                         <table id="table"></table>
                     </div>
+                    <#--<div class="row">-->
+                        <#--<form class="form-horizontal form-label-left" novalidate>-->
+
+                            <#--<div class="item form-group">-->
+                                <#--<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Name <span class="required">*</span>-->
+                                <#--</label>-->
+                                <#--<div class="col-md-6 col-sm-6 col-xs-12">-->
+                                    <#--<input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name" placeholder="both name(s) e.g Jon Doe" required="required" type="text">-->
+                                <#--</div>-->
+                            <#--</div>-->
+
+                        <#--</form>-->
+
+                    <#--</div>-->
+
+
                 </div>
+
+
+
+                    <!-- modals -->
+                    <!-- Large modal -->
+                    <div id="addUserModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /modals -->
+            </div>
+        </div>
+
             </div>
         </div>
     </div>

@@ -41,6 +41,14 @@ public class UserController {
 		mv.addAttribute("aaa",new Date());
 		return "user/user";
 	}
+
+	@RequestMapping("/toUserAddPage")
+	public String toUserAddPage(Model modal) {
+		//modal.addAttribute("aaa",new Date());
+		return "user/userAdd";
+	}
+
+
 	/**
 	 * 新增15条数据测试
 	 */

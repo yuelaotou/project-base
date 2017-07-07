@@ -14,22 +14,39 @@ var validator = (function($){
 
     /* general text messages
     */
+    // message = {
+    //     invalid         : 'invalid input',
+    //     checked         : 'must be checked',
+    //     empty           : 'please put something here',
+    //     min             : 'input is too short',
+    //     max             : 'input is too long',
+    //     number_min      : 'too low',
+    //     number_max      : 'too high',
+    //     url             : 'invalid URL',
+    //     number          : 'not a number',
+    //     email           : 'email address is invalid',
+    //     email_repeat    : 'emails do not match',
+    //     password_repeat : 'passwords do not match',
+    //     repeat          : 'no match',
+    //     complete        : 'input is not complete',
+    //     select          : 'Please select an option'
+    // };
     message = {
-        invalid         : 'invalid input',
-        checked         : 'must be checked',
-        empty           : 'please put something here',
-        min             : 'input is too short',
-        max             : 'input is too long',
-        number_min      : 'too low',
-        number_max      : 'too high',
-        url             : 'invalid URL',
-        number          : 'not a number',
-        email           : 'email address is invalid',
-        email_repeat    : 'emails do not match',
-        password_repeat : 'passwords do not match',
-        repeat          : 'no match',
-        complete        : 'input is not complete',
-        select          : 'Please select an option'
+        invalid         : '格式不正确',
+        checked         : '必须被选中',
+        empty           : '请输入内容',
+        min             : '输入内容过短',
+        max             : '输入内容过长',
+        number_min      : '数字过小',
+        number_max      : '数字过大',
+        url             : '非法URL',
+        number          : '不是数字',
+        email           : '邮件地址非法',
+        email_repeat    : '邮件不匹配',
+        password_repeat : '密码不匹配',
+        repeat          : '不匹配',
+        complete        : '输入内容不完整',
+        select          : '请选择内容'
     };
 
     if(!window.console){

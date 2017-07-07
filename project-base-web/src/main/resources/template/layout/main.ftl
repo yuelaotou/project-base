@@ -17,7 +17,7 @@
     <link href="vendors/nprogress/nprogress.css" rel="stylesheet">
     <!-- Bootstrap table -->
     <link href="vendors/bootstrap-table/bootstrap-table.css" rel="stylesheet">
-    <!--Bootstrap datetime picker-->
+    <!-- Bootstrap datetime picker -->
     <link href="vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
