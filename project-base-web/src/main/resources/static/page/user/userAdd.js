@@ -2,7 +2,15 @@
  * Created by dmin on 2017/7/7.
  */
 $(function() {
+    //初始化验证
+    init_validator();
+    //点击保存按钮
    $("#saveBtn").click(function() {
+       //表单验证未通过
+       if (!validator.checkAll($("#userAddForm"))) {
+           //直接返回
+           return ;
+       }
        var paramObj = {
            name: $("#userAddName").val(),
            age: $("#userAddAge").val(),
@@ -49,4 +57,8 @@ $(function() {
            }
        });
    });
+
 });
+
+
+

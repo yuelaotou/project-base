@@ -13,7 +13,7 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="userEditName">用户姓名： <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-                <input id="userEditName" class="form-control col-md-7 col-xs-12" data-validate-length-range="2,5" data-validate-words="2" name="userEditName" placeholder="" required="required" type="text" value="${user.name}">
+                <input id="userEditName" class="form-control col-md-7 col-xs-12" data-validate-length-range="2,20" name="userEditName" placeholder="" required="required" type="text" value="${user.name}">
             </div>
         </div>
 
@@ -42,7 +42,7 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="userEditPhone">电话： <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-                <input type="tel" id="userEditPhone" name="userEditPhone" required="required" data-validate-length-range="8,20" class="form-control col-md-7 col-xs-12" value="${user.phone}">
+                <input type="tel" id="userEditPhone" name="userEditPhone" required="required" data-validate-length-range="1,11" class="form-control col-md-7 col-xs-12" value="${user.phone}">
             </div>
         </div>
 
